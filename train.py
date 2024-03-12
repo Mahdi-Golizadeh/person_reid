@@ -34,8 +34,10 @@ def train():
             print('Start epoch:', start_epoch)
             path_to_optimizer = MODEL_PRETRAIN_PATH.replace('model', 'optimizer')
             print('Path to the checkpoint of optimizer:', path_to_optimizer)
-            model.load_state_dict(torch.load(MODEL_PRETRAIN_PATH))
-            optimizer.load_state_dict(torch.load(path_to_optimizer))
+            model.load_state_dict(torch.load(MODEL_PRETRAIN_PATH)["model"])
+            model.to(MODEL_DEVICE)
+            optimizer.load_state_dict(torch.load(path_to_optimizer)["optimizer"])
+            # optimizer.to(MODEL_DEVICE)
             scheduler = WarmupMultiStepLR(optimizer, SOLVER_STEPS, 
                                           SOLVER_GAMMA, SOLVER_WARMUP_FACTOR,
                                           SOLVER_WARMUP_ITERS, SOLVER_WARMUP_METHOD, start_epoch)
