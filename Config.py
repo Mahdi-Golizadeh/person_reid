@@ -1,20 +1,20 @@
 # model config
 # Model Config
 # Using cuda or cpu for training
-MODEL_DEVICE = "cpu"
+MODEL_DEVICE = "cuda"
 # ID number of GPU
 MODEL_DEVICE_ID = '0'
 # Name of backbone
 MODEL_NAME = 'resnet50'
 # Last stride of backbone
-MODEL_LAST_STRIDE = 1
+MODEL_LAST_STRIDE = 2
 # Path to pretrained model of backbone
 MODEL_PRETRAIN_PATH = 'resnet50-0676ba61.pth'
 # Use ImageNet pretrained model to initialize backbone or use self trained model to initialize the whole model
 # Options: 'imagenet' or 'self'
 MODEL_PRETRAIN_CHOICE = 'imagenet'
 # If train with BNNeck, options: 'bnneck' or 'no'
-MODEL_NECK = 'bnneck'
+MODEL_NECK = 'no'
 # If train loss include center loss, options: 'yes' or 'no'. Loss with center loss has different optimizer configuration
 MODEL_IF_WITH_CENTER = 'no'
 # The loss type of metric loss
@@ -23,17 +23,17 @@ MODEL_METRIC_LOSS_TYPE = 'triplet'
 # For example, if loss type is cross entropy loss + triplet loss + center loss
 # the setting should be: _C.MODEL.METRIC_LOSS_TYPE = 'triplet_center' and _C.MODEL.IF_WITH_CENTER = 'yes'
 # If train with label smooth, options: 'on', 'off'
-MODEL_IF_LABELSMOOTH = 'on'
+MODEL_IF_LABELSMOOTH = 'off'
 
 # input config
 # Size of the image during training
-INPUT_SIZE_TRAIN = [384, 128]
+INPUT_SIZE_TRAIN = [256, 128]
 # Size of the image during test
-INPUT_SIZE_TEST = [384, 128]
+INPUT_SIZE_TEST = [256, 128]
 # Random probability for image horizontal flip
 INPUT_PROB = 0.5
 # Random probability for random erasing
-INPUT_RE_PROB = 0.5
+INPUT_RE_PROB = 0.0
 # Values to be used for image normalization
 INPUT_PIXEL_MEAN = [0.485, 0.456, 0.406]
 # Values to be used for image normalization
@@ -61,7 +61,7 @@ SOLVER_OPTIMIZER_NAME = "Adam"
 # Number of max epoches
 SOLVER_MAX_EPOCHS = 50
 # Base learning rate
-SOLVER_BASE_LR = 3e-4
+SOLVER_BASE_LR = 0.00035
 # Factor of learning bias
 SOLVER_BIAS_LR_FACTOR = 2
 # Momentum
@@ -83,24 +83,24 @@ SOLVER_RANGE_LOSS_WEIGHT = 1
 
 # Settings of weight decay
 SOLVER_WEIGHT_DECAY = 0.0005
-SOLVER_WEIGHT_DECAY_BIAS = 0.
+SOLVER_WEIGHT_DECAY_BIAS = 0.0005
 
 # decay rate of learning rate
 SOLVER_GAMMA = 0.1
 # decay step of learning rate
-SOLVER_STEPS = (30, 55)
+SOLVER_STEPS = [40, 70]
 
 # warm up factor
-SOLVER_WARMUP_FACTOR = 1.0 / 3
+SOLVER_WARMUP_FACTOR = .01
 # iterations of warm up
-SOLVER_WARMUP_ITERS = 500
+SOLVER_WARMUP_ITERS = 0
 # method of warm up, option: 'constant','linear'
 SOLVER_WARMUP_METHOD = "linear"
 
 # epoch number of saving checkpoints
 SOLVER_CHECKPOINT_PERIOD = 1
 # iteration of display training log
-SOLVER_LOG_PERIOD = 100
+SOLVER_LOG_PERIOD = 10
 # epoch number of validation
 SOLVER_EVAL_PERIOD = 50
 
