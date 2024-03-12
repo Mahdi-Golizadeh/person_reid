@@ -1,2 +1,2 @@
-2024-03-11 23:31:44,760 reid_baseline INFO: Using 1 GPUS
-2024-03-11 23:31:48,516 reid_baseline.train INFO: Start training
+2024-03-12 15:07:24,476 reid_baseline INFO: Using 1 GPUS
+2024-03-12 15:07:27,396 reid_baseline.train INFO: Start training
